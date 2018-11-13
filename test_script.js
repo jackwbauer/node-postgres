@@ -15,19 +15,24 @@ client.connect((err) => {
     if(err) {
         return console.error("Connection Error", err);
     }
+    runQuery();
+});
+
+function runQuery() {
     client.query("SELECT * FROM famous_people WHERE first_name = $1::text OR last_name = $1::text;", [args[0]], (err, result) => {
         if(err) {
             return console.error("error running query", err);
         }
-        logQueryOutput(err, result);
+        
         client.end();
-    })
-});
+        logQueryOutput(err, result);
+    });
+}
 
 function logQueryOutput(err, result) {
     console.log(`Found ${result.rows.length} person(s) by the name ${args[0]}`);
     const output = result.rows;
-    output.forEach((person) => {
-        console.log(`-- ${person.id}: ${person.first_name} ${person.last_name}, born '${person.birthdate}'`);
+    output.forEach((person, index) => {
+        console.log(`-- ${index + 1}: ${person.first_name} ${person.last_name}, born '${person.birthdate}'`);
     })
 }
