@@ -1,7 +1,6 @@
 {
   "name": "postgres",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "knex": "^0.15.2",
@@ -20,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/jackwbauer/node-postgres/issues"
   },
-  "homepage": "https://github.com/jackwbauer/node-postgres#readme"
+  "homepage": "https://github.com/jackwbauer/node-postgres#readme",
+  "description": ""
 }
